@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacation Planner | Projekt WIP</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <div id="somethingElse" class="hidden">Witaj na samej górze! 🌴</div>
@@ -18,7 +16,6 @@
             <ul class="linkiNawigacyjne">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#jakToDziala">Jak to działa</a></li>
-                <li><a href="#oferty">Oferty</a></li>
                 <li><a href="#oMnie">O mnie</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
                 <li id="navZaplanuj"><a href="#zaplanujPodrozSection">Zaplanuj</a></li>
@@ -27,43 +24,49 @@
     </header>
 
     <main>
-        <section id="home" class="section reveal">
+        <section id="home" class="section reveal"> 
             <h1>Zaplanuj wymarzone wakacje</h1>
             <p>Twój inteligentny planer podróży dostępny w jednym miejscu.</p>
             <a href="#zaplanujPodrozSection" class="btnPrimary">Zacznij tutaj</a>
+            <p>tutaj sobie dodam takie ze mozna przeciagac obrazki z roznych miejsc ciekawych o, ale tera to juz mi sie spac chce</p>
         </section>
 
         <section id="jakToDziala" class="section reveal">
             <h2>Jak to działa</h2>
             <p>Trzy proste kroki do Twojej idealnej podróży.</p>
+            <ul>
+                <li>Wybierz kierunki</li>
+                <li>Zaplac</li>
+                <li>Spierdalaj</li>
+            </ul>
         </section>
 
-        <section id="zaplanujPodrozSection" class="sectionMain reveal">
+        <section id="zaplanujPodrozSection" class="sectionMain reveal"> 
             <div class="surveyWrapper">
                 <h2>Ankieta Podróżnika</h2>
                 <form id="mainSurvey">
-
+                    
                     <div class="stepTitle">1. Wybierz kierunki</div>
                     <div class="carouselViewport" id="carouselViewport">
                         <div class="carouselTrack">
                             <label class="selectionCard">
                                 <input type="checkbox" name="destinations" value="Góry" hidden>
                                 <div class="cardContent">
-                                    <img src="img/gory.jpg" alt="Góry">
+                                    <img src="images/insta3.jpg" alt="Góry">
                                     <span>Góry</span>
                                 </div>
                             </label>
                             <label class="selectionCard">
                                 <input type="checkbox" name="destinations" value="Morze" hidden>
                                 <div class="cardContent">
-                                    <img src="img/morze.jpg" alt="Morze">
+                                    <img src="images/insta2.jpg" alt="Morze">
                                     <span>Morze</span>
                                 </div>
                             </label>
                             <label class="selectionCard">
                                 <input type="checkbox" name="destinations" value="Miasto" hidden>
                                 <div class="cardContent">
-                                    <img src="img/miasto.jpg" alt="Miasto">
+                                    <img src="images/insta1.jpg" alt="Miasto">
                                     <span>City Break</span>
                                 </div>
                             </label>
@@ -81,14 +84,12 @@
                     <div class="surveyDetails">
                         <div class="inputGroup fullWidth">
                             <label for="userEmail">Twój E-mail:</label>
-                            <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com"
-                                required>
+                            <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com" required>
                         </div>
                         <div class="inputRow">
                             <div class="inputGroup">
                                 <label for="travelersCount">Osoby:</label>
-                                <input type="number" id="travelersCount" name="travelersCount" min="1" max="11"
-                                    value="2" required>
+                                <input type="number" id="travelersCount" name="travelersCount" min="1" max="11" value="2" required>
                             </div>
                             <div class="inputGroup">
                                 <label for="durationRange">Dni: <span id="durationValue">7</span></label>
@@ -109,26 +110,21 @@
                 </form>
             </div>
         </section>
-        <section id="oferty" class="section reveal">
-            <h2>Przykładowe oferty</h2>
-            <label class="sectionTitle">[Przykładowa Oferta]</label>
-            <div class="cardContent">
-                <img src="img/egzotyka.jpg" alt="Egzotyka">
-                <span>Egzotyka</span>
-            </div>
-        </section>
 
         <section id="oMnie" class="sectionReviews reveal">
             <h2>O mnie</h2>
+            <h3>siemanko</h3>
+            <p>Jestem pasjonatką podróży i odkrywania nowych miejsc. Chce na was zarobic aby sama se jezdzic elo</p>
             <div class="instaGrid">
-                <div class="instaItem"><img src="img/insta1.jpg" alt="1"></div>
-                <div class="instaItem"><img src="img/insta2.jpg" alt="2"></div>
-                <div class="instaItem"><img src="img/insta3.jpg" alt="3"></div>
+                <div class="instaItem"><img src="images/insta1.jpg" alt="1"></div>
+                <div class="instaItem"><img src="images/insta2.jpg" alt="2"></div>
+                <div class="instaItem"><img src="images/insta3.jpg" alt="3"></div>
             </div>
         </section>
 
         <section id="kontakt" class="section reveal">
             <h2>Kontakt</h2>
+            <p>cos sie tu napisze, nie wiem co. Dzien dobry!</p>
         </section>
 
         <footer class="footer">
@@ -147,5 +143,4 @@
 
     <script src="functionality.js"></script>
 </body>
-
 </html>

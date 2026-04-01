@@ -1,21 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Zmienne globalne
     const mainSurvey = document.getElementById('mainSurvey');
     const submitBtn = document.getElementById('submitBtn');
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwptRZeksdHbm2m677_1TbeuR7ZnJ2MlATrEcyeJ-34BJO4vaNddgDbhRIc6t26mRUZ/exec';
 
-    // 1. ANIMACJA POJAWIANIA I ZNIKANIA (Reveal/Hide)
-    // Obserwator sprawdza, czy element jest w widoku. Jeśli nie - zabiera klasę active (zanikanie).
+    // 1. ANIMACJA POJAWIANIA I ZNIKANIA
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active'); // Pojawia się
+                entry.target.classList.add('active');
             } else {
-                entry.target.classList.remove('active'); // Znika przy przewijaniu dalej
+                entry.target.classList.remove('active');
             }
         });
-    }, { threshold: 0.1 }); // Reakcja przy 10% widoczności
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
@@ -37,22 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (slider) {
         slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.classList.add('dragging');
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
+            isDown = true; slider.classList.add('dragging');
+            startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
         });
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.classList.remove('dragging');
-        });
+        slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('dragging'); });
         slider.addEventListener('mouseleave', () => isDown = false);
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
+            slider.scrollLeft = scrollLeft - (x - startX) * 2;
         });
     }
 
@@ -65,20 +57,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. FORM SUBMIT
+    // 5. FORM SUBMIT & VALIDATION
     if (mainSurvey) {
+        // Resetowanie błędu przy zmianie checkboxa
+        const checkboxes = mainSurvey.querySelectorAll('input[name="destinations"]');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                checkboxes[0].setCustomValidity(""); // Czyść błąd na pierwszym elemencie
+            });
+        });
+
         mainSurvey.addEventListener('submit', (e) => {
-            e.preventDefault();
             const formData = new FormData(mainSurvey);
             const destinations = formData.getAll('destinations');
+            const firstCheckbox = checkboxes[0];
 
+            // Walidacja wyboru destynacji (taki sam dymek jak email)
             if (destinations.length === 0) {
-                alert("Proszę wybrać kierunek!");
+                e.preventDefault();
+                firstCheckbox.setCustomValidity("Wybierz przynajmniej jeden kierunek!");
+                firstCheckbox.reportValidity();
                 return;
+            } else {
+                firstCheckbox.setCustomValidity("");
             }
 
-            submitBtn.textContent = "Wysyłanie...";
-            submitBtn.disabled = true;
+            // Jeśli walidacja przeszła - wysyłamy
+            e.preventDefault();
+            submitBtn.textContent = "Wysłano!";
+            submitBtn.disabled = true; // Blokada do przeładowania strony
+            submitBtn.style.background = "#bdc3c7"; // Wizualne potwierdzenie zablokowania
+            submitBtn.style.cursor = "not-allowed";
 
             fetch(scriptURL, {
                 method: 'POST',
@@ -90,14 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     durationRange: formData.get('durationRange'),
                     budgetRange: formData.get('budgetRange')
                 })
-            }).then(() => {
-                submitBtn.textContent = "Wysłano!";
-                submitBtn.classList.add('btnSuccess');
-                mainSurvey.reset();
-                if (durationDisplay) durationDisplay.textContent = "7";
             }).catch(() => {
-                submitBtn.textContent = "Błąd wysyłki";
-                submitBtn.disabled = false;
+                console.log("Błąd wysyłki, ale przycisk zostaje 'Wysłano' zgodnie z instrukcją.");
             });
         });
     }
