@@ -1,186 +1,96 @@
+/* Definicja kolorów i zmiennych wielokrotnego użytku */
 :root {
-    --primary: #2c3e50;    
-    --accent: #e74c3c;     
-    --light: #ecf0f1;      
+    --primary: #2c3e50;
+    --accent: #e74c3c;
+    --success: #27ae60;
+    --light: #ecf0f1;
     --white: #ffffff;
-    --transition: 0.3s ease;
+    --transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); /* Płynna animacja wejścia */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Resetowanie domyślnych marginesów przeglądarki */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', sans-serif; background-color: var(--light); color: var(--primary); overflow-x: hidden; }
+
+/* HEADER - Nawigacja przyklejona do góry */
+.mainHeader { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; height: 70px; }
+.linkiNawigacyjne { display: flex; list-style: none; gap: 20px; align-items: center; }
+.linkiNawigacyjne a { text-decoration: none; color: var(--primary); font-weight: 500; transition: 0.3s; }
+#navZaplanuj { background-color: var(--accent); padding: 8px 18px; border-radius: 25px; margin-left: 10px; }
+#navZaplanuj a { color: var(--white); }
+
+/* SEKCJE - Każda zajmuje minimum wysokość ekranu */
+.section, .sectionMain, .sectionReviews { min-height: 100vh; padding: 100px 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+/* --- LOGIKA ANIMACJI REVEAL --- */
+.reveal {
+    opacity: 0;               /* Domyślnie element jest przezroczysty */
+    transform: translateY(40px); /* Przesunięty o 40px w dół */
+    transition: all 0.8s ease-out; /* Czas trwania animacji pojawiania się */
 }
 
-html {
-    scroll-behavior: smooth;
+.reveal.active {
+    opacity: 1;               /* Po dodaniu klasy active staje się widoczny */
+    transform: translateY(0);    /* Wraca na swoje miejsce (0px) */
 }
 
-body {
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--light);
-    line-height: 1.6;
-}
-.mainHeader {
-    position: fixed;
-    top: 0;
+/* KARUZELA ZDJĘĆ */
+.carouselViewport { width: 100%; max-width: 900px; overflow-x: auto; cursor: grab; scrollbar-width: none; padding: 20px 0; display: flex; }
+.carouselViewport::-webkit-scrollbar { display: none; }
+.carouselViewport.active { cursor: grabbing; }
+.carouselTrack { display: flex; gap: 15px; padding: 0 5%; width: max-content; }
+.selectionCard { width: 240px; flex-shrink: 0; cursor: pointer; }
+.cardContent { width: 100%; border-radius: 15px; background: var(--white); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; border: 3px solid transparent; }
+.cardContent img { width: 100%; height: 150px; object-fit: cover; pointer-events: none; }
+.cardContent span { display: block; padding: 15px; font-weight: bold; }
+input[type="checkbox"]:checked + .cardContent { border-color: var(--accent); transform: translateY(-5px); }
+
+/* SEKCJA O MNIE - GRID INSTAGRAMA */
+.instaGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 równe kolumny */
+    gap: 15px;
+    margin-top: 30px;
     width: 100%;
-    background: var(--white);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
+    max-width: 800px;
 }
+.instaItem { width: 100%; aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.instaItem img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.instaItem:hover img { transform: scale(1.1); } /* Powiększ zdjęcie przy najechaniu */
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background-color: var(--white);
-    height:70px;
-}
+/* FORMULARZ I POLA */
+.surveyDetails { width: 100%; max-width: 600px; background: var(--white); padding: 30px; border-radius: 20px; margin-top: 30px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.inputGroup { display: flex; flex-direction: column; text-align: left; }
+.inputRow { display: flex; gap: 15px; flex-wrap: wrap; }
+.inputGroup label { font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
+.inputGroup input, .inputGroup select { padding: 12px; border: 2px solid #edf2f7; border-radius: 10px; font-family: inherit; }
 
-.linkiNawigacyjne {
-    display: flex;             /* Sprawia, że <li> są obok siebie, a nie pod sobą */
-    list-style: none;          /* Usuwa kropki z listy */
-    gap: 25px;                 /* Nowoczesny sposób na odstępy między linkami */
-    align-items: center;
-}
+/* PRZYCISKI I ICH STANY */
+.btnSubmit { margin-top: 30px; padding: 15px 40px; background: var(--accent); color: var(--white); border: none; border-radius: 30px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btnSubmit:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); }
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 5%;
-    background-color: wheat;
-    height: 60px;
-    width: 100%;
-}
-.footerLinks{
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-.footerLinks a {
-    text-decoration: none;
-    color: #333;
-    font-size: 0.9rem;
-}
-.mailOdnosnik a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
+/* Styl przycisku po wysłaniu ankiety */
+.btnSubmit.btnSuccess { background: #95a5a6 !important; cursor: not-allowed; }
 
-#zaplanujPodroz {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    align-items: center;
-}
+/* STOPKA */
+.footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; background: wheat; width: 100%; margin-top: 50px; }
+.footerLinks { display: flex; list-style: none; gap: 20px; }
+.footerLinks a, .mailOdnosnik a { text-decoration: none; color: #333; font-size: 0.9rem; }
 
-#zaplanujPodroz a {
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 500;
-    transition: var(--transition);
-}
+/* HOME ALERT */
+#somethingElse { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 12px 25px; border-radius: 30px; z-index: 2000; transition: 0.5s; }
+.hidden { display: none; opacity: 0; }
 
-#zaplanujPodroz a:hover {
-    color: var(--accent);
+/* RESPONSYWNOŚĆ - Dla telefonów */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; height: auto; padding: 15px; }
+    .linkiNawigacyjne { margin-top: 15px; font-size: 0.85rem; gap: 10px; }
+    .selectionCard { width: 75vw; }
+    .inputRow { flex-direction: column; }
+    .instaGrid { grid-template-columns: repeat(2, 1fr); } /* 2 kolumny na tabletach */
 }
-
-/* Wyróżnienie ostatniego elementu: Zaplanuj podróż */
-#zaplanujPodroz li:last-child {
-    margin-left: 15px; /* Separacja od reszty */
-    padding: 8px 15px;
-    background-color: var(--accent);
-    border-radius: 20px;
-}
-
-#zaplanujPodroz li:last-child a {
-    color: var(--white);
-}
-
-#zaplanujPodroz li:last-child:hover {
-    transform: scale(1.05);
-}
-.section, .sectionMain, .sectionReviews {
-    min-height: 100vh;
-    padding: 100px 20px; /* Padding dla fixed headera */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* KARUZELA */
-.carousel-viewport {
-    width: 100%;
-    max-width: 600px; /* Ograniczamy szerokość okna */
-    overflow-x: auto; /* Pozwala na przewijanie palcem na mobile */
-    padding: 20px 0;
-    scrollbar-width: none; /* Ukrywamy pasek w Firefox */
-}
-
-.carousel-viewport::-webkit-scrollbar {
-    display: none; /* Ukrywamy pasek w Chrome/Safari */
-}
-
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    width: max-content; /* Ustawia zdjęcia w jednej linii */
-}
-
-.selection-card {
-    cursor: pointer;
-}
-
-.card-content {
-    width: 200px;
-    border-radius: 15px;
-    overflow: hidden;
-    background: var(--white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: var(--transition);
-    text-align: center;
-    border: 3px solid transparent;
-}
-
-.card-content img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.card-content span {
-    display: block;
-    padding: 10px;
-    font-weight: bold;
-}
-
-/* Efekt zaznaczenia (gdy ukryty checkbox jest zaznaczony) */
-input[type="checkbox"]:checked + .card-content {
-    border-color: var(--accent);
-    transform: translateY(-5px);
-}
-
-#somethingElse {
-    position: fixed;
-    top: 80px; /* Tuż pod Twoim mainHeader */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--accent);
-    color: var(--white);
-    padding: 10px 25px;
-    border-radius: 25px;
-    z-index: 999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-/* Klasa pomocnicza do ukrywania elementu */
-.hidden {
-    display: none;
-    opacity: 0;
-    transform: translate(-50%, -20px) !important; /* Lekkie przesunięcie w górę przy znikaniu */
+@media (max-width: 480px) {
+    .instaGrid { grid-template-columns: 1fr; } /* 1 kolumna na małych telefonach */
 }
