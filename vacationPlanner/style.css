@@ -1,0 +1,186 @@
+:root {
+    --primary: #2c3e50;    
+    --accent: #e74c3c;     
+    --light: #ecf0f1;      
+    --white: #ffffff;
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--light);
+    line-height: 1.6;
+}
+.mainHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: var(--white);
+    height:70px;
+}
+
+.linkiNawigacyjne {
+    display: flex;             /* Sprawia, że <li> są obok siebie, a nie pod sobą */
+    list-style: none;          /* Usuwa kropki z listy */
+    gap: 25px;                 /* Nowoczesny sposób na odstępy między linkami */
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5%;
+    background-color: wheat;
+    height: 60px;
+    width: 100%;
+}
+.footerLinks{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+.footerLinks a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+.mailOdnosnik a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+#zaplanujPodroz {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+
+#zaplanujPodroz a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+#zaplanujPodroz a:hover {
+    color: var(--accent);
+}
+
+/* Wyróżnienie ostatniego elementu: Zaplanuj podróż */
+#zaplanujPodroz li:last-child {
+    margin-left: 15px; /* Separacja od reszty */
+    padding: 8px 15px;
+    background-color: var(--accent);
+    border-radius: 20px;
+}
+
+#zaplanujPodroz li:last-child a {
+    color: var(--white);
+}
+
+#zaplanujPodroz li:last-child:hover {
+    transform: scale(1.05);
+}
+.section, .sectionMain, .sectionReviews {
+    min-height: 100vh;
+    padding: 100px 20px; /* Padding dla fixed headera */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* KARUZELA */
+.carousel-viewport {
+    width: 100%;
+    max-width: 600px; /* Ograniczamy szerokość okna */
+    overflow-x: auto; /* Pozwala na przewijanie palcem na mobile */
+    padding: 20px 0;
+    scrollbar-width: none; /* Ukrywamy pasek w Firefox */
+}
+
+.carousel-viewport::-webkit-scrollbar {
+    display: none; /* Ukrywamy pasek w Chrome/Safari */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    width: max-content; /* Ustawia zdjęcia w jednej linii */
+}
+
+.selection-card {
+    cursor: pointer;
+}
+
+.card-content {
+    width: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    text-align: center;
+    border: 3px solid transparent;
+}
+
+.card-content img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content span {
+    display: block;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Efekt zaznaczenia (gdy ukryty checkbox jest zaznaczony) */
+input[type="checkbox"]:checked + .card-content {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+#somethingElse {
+    position: fixed;
+    top: 80px; /* Tuż pod Twoim mainHeader */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 10px 25px;
+    border-radius: 25px;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+/* Klasa pomocnicza do ukrywania elementu */
+.hidden {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -20px) !important; /* Lekkie przesunięcie w górę przy znikaniu */
+}
