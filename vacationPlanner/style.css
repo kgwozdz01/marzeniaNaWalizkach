@@ -1,96 +1,74 @@
-/* Definicja kolorów i zmiennych wielokrotnego użytku */
 :root {
     --primary: #2c3e50;
     --accent: #e74c3c;
-    --success: #27ae60;
-    --light: #ecf0f1;
     --white: #ffffff;
-    --transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67); /* Płynna animacja wejścia */
+    --bg: #f8f9fa;
+    --transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Resetowanie domyślnych marginesów przeglądarki */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Segoe UI', sans-serif; background-color: var(--light); color: var(--primary); overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--primary); }
 
-/* HEADER - Nawigacja przyklejona do góry */
-.mainHeader { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; height: 70px; }
-.linkiNawigacyjne { display: flex; list-style: none; gap: 20px; align-items: center; }
-.linkiNawigacyjne a { text-decoration: none; color: var(--primary); font-weight: 500; transition: 0.3s; }
-#navZaplanuj { background-color: var(--accent); padding: 8px 18px; border-radius: 25px; margin-left: 10px; }
-#navZaplanuj a { color: var(--white); }
+/* HEADER - Poprawiona responsywność menu */
+.mainHeader { position: fixed; top: 0; width: 100%; background: var(--white); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 70px; }
+.logo { font-weight: 800; letter-spacing: -1px; }
+.linkiNawigacyjne { display: flex; list-style: none; gap: 15px; font-size: 0.9rem; }
+.linkiNawigacyjne a { text-decoration: none; color: var(--primary); font-weight: 600; }
+#navZaplanuj { background: var(--accent); padding: 5px 12px; border-radius: 15px; }
+#navZaplanuj a { color: white; }
 
-/* SEKCJE - Każda zajmuje minimum wysokość ekranu */
-.section, .sectionMain, .sectionReviews { min-height: 100vh; padding: 100px 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+/* SEKCJE I ANIMACJA ZNIKANIA */
+.section, .sectionMain, .sectionReviews { min-height: 100vh; padding: 100px 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- LOGIKA ANIMACJI REVEAL --- */
-.reveal {
-    opacity: 0;               /* Domyślnie element jest przezroczysty */
-    transform: translateY(40px); /* Przesunięty o 40px w dół */
-    transition: all 0.8s ease-out; /* Czas trwania animacji pojawiania się */
-}
+/* WRAPPER ANKIETY - Spójność wizualna */
+.surveyWrapper { background: var(--white); padding: 35px; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); width: 100%; max-width: 800px; }
+.stepTitle { text-align: left; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin: 25px 0 15px; letter-spacing: 1px; }
 
-.reveal.active {
-    opacity: 1;               /* Po dodaniu klasy active staje się widoczny */
-    transform: translateY(0);    /* Wraca na swoje miejsce (0px) */
-}
-
-/* KARUZELA ZDJĘĆ */
-.carouselViewport { width: 100%; max-width: 900px; overflow-x: auto; cursor: grab; scrollbar-width: none; padding: 20px 0; display: flex; }
+/* KARUZELA */
+.carouselViewport { width: 100%; overflow-x: auto; cursor: grab; scrollbar-width: none; }
 .carouselViewport::-webkit-scrollbar { display: none; }
-.carouselViewport.active { cursor: grabbing; }
-.carouselTrack { display: flex; gap: 15px; padding: 0 5%; width: max-content; }
-.selectionCard { width: 240px; flex-shrink: 0; cursor: pointer; }
-.cardContent { width: 100%; border-radius: 15px; background: var(--white); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; border: 3px solid transparent; }
-.cardContent img { width: 100%; height: 150px; object-fit: cover; pointer-events: none; }
-.cardContent span { display: block; padding: 15px; font-weight: bold; }
-input[type="checkbox"]:checked + .cardContent { border-color: var(--accent); transform: translateY(-5px); }
+.carouselViewport.dragging { cursor: grabbing; }
+.carouselTrack { display: flex; gap: 12px; padding: 5px; width: max-content; }
+.selectionCard { width: 180px; flex-shrink: 0; cursor: pointer; }
+.cardContent { border-radius: 12px; border: 2px solid #eee; overflow: hidden; transition: 0.3s; }
+.cardContent img { width: 100%; height: 110px; object-fit: cover; pointer-events: none; }
+.cardContent span { display: block; padding: 10px; font-weight: 700; font-size: 0.85rem; }
+input[type="checkbox"]:checked + .cardContent { border-color: var(--accent); background: #fff5f4; }
 
-/* SEKCJA O MNIE - GRID INSTAGRAMA */
-.instaGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 równe kolumny */
-    gap: 15px;
-    margin-top: 30px;
-    width: 100%;
-    max-width: 800px;
-}
-.instaItem { width: 100%; aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.instaItem img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.instaItem:hover img { transform: scale(1.1); } /* Powiększ zdjęcie przy najechaniu */
-
-/* FORMULARZ I POLA */
-.surveyDetails { width: 100%; max-width: 600px; background: var(--white); padding: 30px; border-radius: 20px; margin-top: 30px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-.inputGroup { display: flex; flex-direction: column; text-align: left; }
-.inputRow { display: flex; gap: 15px; flex-wrap: wrap; }
-.inputGroup label { font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
-.inputGroup input, .inputGroup select { padding: 12px; border: 2px solid #edf2f7; border-radius: 10px; font-family: inherit; }
-
-/* PRZYCISKI I ICH STANY */
-.btnSubmit { margin-top: 30px; padding: 15px 40px; background: var(--accent); color: var(--white); border: none; border-radius: 30px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.btnSubmit:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); }
-
-/* Styl przycisku po wysłaniu ankiety */
+/* FORMULARZ */
+.surveyDetails { display: flex; flex-direction: column; gap: 15px; }
+.inputRow { display: flex; gap: 10px; }
+.inputGroup { flex: 1; display: flex; flex-direction: column; text-align: left; }
+.inputGroup label { font-size: 0.75rem; font-weight: 700; margin-bottom: 4px; color: #888; }
+.inputGroup input, .inputGroup select { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; }
+.btnSubmit { width: 100%; margin-top: 25px; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
 .btnSubmit.btnSuccess { background: #95a5a6 !important; cursor: not-allowed; }
 
-/* STOPKA */
-.footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; background: wheat; width: 100%; margin-top: 50px; }
+/* INSTA GRID */
+.instaGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 800px; }
+.instaItem { aspect-ratio: 1; border-radius: 10px; overflow: hidden; }
+.instaItem img { width: 100%; height: 100%; object-fit: cover; }
+
+/* FOOTER - Poprawiony */
+.footer { background: #fff; padding: 40px 5%; border-top: 1px solid #eee; }
+.footerContainer { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; gap: 20px; }
 .footerLinks { display: flex; list-style: none; gap: 20px; }
-.footerLinks a, .mailOdnosnik a { text-decoration: none; color: #333; font-size: 0.9rem; }
+.footerLinks a, .mailOdnosnik a { text-decoration: none; color: var(--primary); font-size: 0.85rem; font-weight: 600; }
 
-/* HOME ALERT */
-#somethingElse { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 12px 25px; border-radius: 30px; z-index: 2000; transition: 0.5s; }
-.hidden { display: none; opacity: 0; }
-
-/* RESPONSYWNOŚĆ - Dla telefonów */
+/* MOBILE */
 @media (max-width: 768px) {
-    .navbar { flex-direction: column; height: auto; padding: 15px; }
-    .linkiNawigacyjne { margin-top: 15px; font-size: 0.85rem; gap: 10px; }
-    .selectionCard { width: 75vw; }
+    .navbar { flex-direction: column; height: auto; padding: 15px; gap: 10px; }
+    .linkiNawigacyjne { font-size: 0.7rem; flex-wrap: wrap; justify-content: center; }
+    .surveyWrapper { padding: 20px; border-radius: 15px; }
     .inputRow { flex-direction: column; }
-    .instaGrid { grid-template-columns: repeat(2, 1fr); } /* 2 kolumny na tabletach */
+    .selectionCard { width: 150px; }
+    .footerContainer { flex-direction: column; text-align: center; }
+    .instaGrid { grid-template-columns: 1fr; }
 }
-@media (max-width: 480px) {
-    .instaGrid { grid-template-columns: 1fr; } /* 1 kolumna na małych telefonach */
-}
+
+#somethingElse { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 10px 20px; border-radius: 20px; z-index: 2000; }
+.hidden { display: none; }

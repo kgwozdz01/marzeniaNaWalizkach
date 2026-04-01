@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacation Planner | Projekt WIP</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div id="somethingElse" class="hidden">Witaj na samej górze! 🌴 Sprawdź nasze oferty.</div>
+    <div id="somethingElse" class="hidden">Witaj na samej górze! 🌴</div>
 
     <header class="mainHeader">
         <nav class="navbar">
@@ -17,15 +19,15 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#jakToDziala">Jak to działa</a></li>
                 <li><a href="#oferty">Oferty</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
                 <li><a href="#oMnie">O mnie</a></li>
-                <li id="navZaplanuj"><a href="#zaplanujPodrozSection">Zaplanuj podróż</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li id="navZaplanuj"><a href="#zaplanujPodrozSection">Zaplanuj</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="home" class="section reveal"> 
+        <section id="home" class="section reveal">
             <h1>Zaplanuj wymarzone wakacje</h1>
             <p>Twój inteligentny planer podróży dostępny w jednym miejscu.</p>
             <a href="#zaplanujPodrozSection" class="btnPrimary">Zacznij tutaj</a>
@@ -33,103 +35,117 @@
 
         <section id="jakToDziala" class="section reveal">
             <h2>Jak to działa</h2>
-            <div id="surveyContainer">Wybierz kierunek, określ budżet, a my zajmiemy się resztą.</div>
+            <p>Trzy proste kroki do Twojej idealnej podróży.</p>
         </section>
 
-        <section id="oMnie" class="sectionReviews reveal">
-            <h2>O mnie & Inspiracje</h2>
-            <p>Cześć! Jestem Twoim przewodnikiem po najlepszych okazjach.</p>
-            <div class="instaGrid">
-                <div class="instaItem"><img src="img/insta1.jpg" alt="Podróż 1"></div>
-                <div class="instaItem"><img src="img/insta2.jpg" alt="Podróż 2"></div>
-                <div class="instaItem"><img src="img/insta3.jpg" alt="Podróż 3"></div>
-                <div class="instaItem"><img src="img/insta4.jpg" alt="Podróż 4"></div>
-                <div class="instaItem"><img src="img/insta5.jpg" alt="Podróż 5"></div>
-                <div class="instaItem"><img src="img/insta6.jpg" alt="Podróż 6"></div>
+        <section id="zaplanujPodrozSection" class="sectionMain reveal">
+            <div class="surveyWrapper">
+                <h2>Ankieta Podróżnika</h2>
+                <form id="mainSurvey">
+
+                    <div class="stepTitle">1. Wybierz kierunki</div>
+                    <div class="carouselViewport" id="carouselViewport">
+                        <div class="carouselTrack">
+                            <label class="selectionCard">
+                                <input type="checkbox" name="destinations" value="Góry" hidden>
+                                <div class="cardContent">
+                                    <img src="img/gory.jpg" alt="Góry">
+                                    <span>Góry</span>
+                                </div>
+                            </label>
+                            <label class="selectionCard">
+                                <input type="checkbox" name="destinations" value="Morze" hidden>
+                                <div class="cardContent">
+                                    <img src="img/morze.jpg" alt="Morze">
+                                    <span>Morze</span>
+                                </div>
+                            </label>
+                            <label class="selectionCard">
+                                <input type="checkbox" name="destinations" value="Miasto" hidden>
+                                <div class="cardContent">
+                                    <img src="img/miasto.jpg" alt="Miasto">
+                                    <span>City Break</span>
+                                </div>
+                            </label>
+                            <label class="selectionCard">
+                                <input type="checkbox" name="destinations" value="Egzotyka" hidden>
+                                <div class="cardContent">
+                                    <img src="img/egzotyka.jpg" alt="Egzotyka">
+                                    <span>Egzotyka</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="stepTitle">2. Twoje dane i budżet</div>
+                    <div class="surveyDetails">
+                        <div class="inputGroup fullWidth">
+                            <label for="userEmail">Twój E-mail:</label>
+                            <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com"
+                                required>
+                        </div>
+                        <div class="inputRow">
+                            <div class="inputGroup">
+                                <label for="travelersCount">Osoby:</label>
+                                <input type="number" id="travelersCount" name="travelersCount" min="1" max="11"
+                                    value="2" required>
+                            </div>
+                            <div class="inputGroup">
+                                <label for="durationRange">Dni: <span id="durationValue">7</span></label>
+                                <input type="range" id="durationRange" name="durationRange" min="1" max="31" value="7">
+                            </div>
+                            <div class="inputGroup">
+                                <label for="budgetRange">Budżet:</label>
+                                <select id="budgetRange" name="budgetRange" required>
+                                    <option value="" disabled selected>Wybierz</option>
+                                    <option value="low">Do 1000 zł</option>
+                                    <option value="medium">1-3 tys. zł</option>
+                                    <option value="high">3-5 tys. zł</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btnSubmit" id="submitBtn">Zapisz i wyślij</button>
+                </form>
+            </div>
+        </section>
+        <section id="oferty" class="section reveal">
+            <h2>Przykładowe oferty</h2>
+            <label class="sectionTitle">[Przykładowa Oferta]</label>
+            <div class="cardContent">
+                <img src="img/egzotyka.jpg" alt="Egzotyka">
+                <span>Egzotyka</span>
             </div>
         </section>
 
-        <section id="zaplanujPodrozSection" class="sectionMain reveal"> 
-            <h2>Zaplanuj podróż</h2>
-            <p>Wypełnij ankietę, a my przygotujemy dla Ciebie ofertę.</p>
-            
-            <form id="mainSurvey">
-                <div class="carouselViewport" id="carouselViewport">
-                    <div class="carouselTrack">
-                        <label class="selectionCard">
-                            <input type="checkbox" name="destinations" value="Góry" hidden>
-                            <div class="cardContent">
-                                <img src="img/gory.jpg" alt="Góry">
-                                <span>Góry</span>
-                            </div>
-                        </label>
-                        <label class="selectionCard">
-                            <input type="checkbox" name="destinations" value="Morze" hidden>
-                            <div class="cardContent">
-                                <img src="img/morze.jpg" alt="Morze">
-                                <span>Morze</span>
-                            </div>
-                        </label>
-                        <label class="selectionCard">
-                            <input type="checkbox" name="destinations" value="Miasto" hidden>
-                            <div class="cardContent">
-                                <img src="img/miasto.jpg" alt="Miasto">
-                                <span>City Break</span>
-                            </div>
-                        </label>
-                        <label class="selectionCard">
-                            <input type="checkbox" name="destinations" value="Egzotyka" hidden>
-                            <div class="cardContent">
-                                <img src="img/egzotyka.jpg" alt="Egzotyka">
-                                <span>Egzotyka</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
+        <section id="oMnie" class="sectionReviews reveal">
+            <h2>O mnie</h2>
+            <div class="instaGrid">
+                <div class="instaItem"><img src="img/insta1.jpg" alt="1"></div>
+                <div class="instaItem"><img src="img/insta2.jpg" alt="2"></div>
+                <div class="instaItem"><img src="img/insta3.jpg" alt="3"></div>
+            </div>
+        </section>
 
-                <div class="surveyDetails">
-                    <div class="inputGroup">
-                        <label for="userEmail">Twój E-mail:</label>
-                        <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com" required>
-                    </div>
-
-                    <div class="inputRow">
-                        <div class="inputGroup">
-                            <label for="travelersCount">Ilość osób (1-11):</label>
-                            <input type="number" id="travelersCount" name="travelersCount" min="1" max="11" value="2" required>
-                        </div>
-                        <div class="inputGroup">
-                            <label for="durationRange">Pobyt: <span id="durationValue">7</span> dni</label>
-                            <input type="range" id="durationRange" name="durationRange" min="1" max="31" value="7">
-                        </div>
-                        <div class="inputGroup">
-                            <label for="budgetRange">Budżet / os:</label>
-                            <select id="budgetRange" name="budgetRange" required>
-                                <option value="" disabled selected>Wybierz</option>
-                                <option value="low">Do 1000 zł</option>
-                                <option value="medium">1000-3000 zł</option>
-                                <option value="high">3000-5000 zł</option>
-                                <option value="veryHigh">5000+ zł</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btnSubmit" id="submitBtn">Zapisz wybór i wyślij</button>
-            </form>
+        <section id="kontakt" class="section reveal">
+            <h2>Kontakt</h2>
         </section>
 
         <footer class="footer">
-            <ul class="footerLinks">
-                <li><a href="#home">Na początek</a></li>
-                <li><a href="#instagram">Instagram</a></li>
-                <li><a href="#facebook">Facebook</a></li>
-            </ul>
-            <div class="mailOdnosnik">
-                <a href="mailto:wakacjenawalizkach@gmail.com">wakacjenawalizkach@gmail.com</a>
+            <div class="footerContainer">
+                <ul class="footerLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#oMnie">Instagram</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+                <div class="mailOdnosnik">
+                    <a href="mailto:wakacjenawalizkach@gmail.com">wakacjenawalizkach@gmail.com</a>
+                </div>
             </div>
         </footer>
     </main>
 
     <script src="functionality.js"></script>
 </body>
+
 </html>
