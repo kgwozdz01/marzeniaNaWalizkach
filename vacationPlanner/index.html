@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacation Planner | Projekt WIP</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div id="somethingElse" class="hidden">Witaj na samej górze! 🌴</div>
 
     <header class="mainHeader">
         <nav class="navbar">
-            <div class="logo">WAKACJE NA WALIZKACH</div>
+            <div class="logo">MARZENIA NA WALIZKACH KOLORY JAK NA LOGO</div>
             <ul class="linkiNawigacyjne">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#jakToDziala">Jak to działa</a></li>
@@ -24,11 +26,12 @@
     </header>
 
     <main>
-        <section id="home" class="section reveal"> 
+        <section id="home" class="section reveal">
             <h1>Zaplanuj wymarzone wakacje</h1>
             <p>Twój inteligentny planer podróży dostępny w jednym miejscu.</p>
             <a href="#zaplanujPodrozSection" class="btnPrimary">Zacznij tutaj</a>
-            <p>tutaj sobie dodam takie ze mozna przeciagac obrazki z roznych miejsc ciekawych o, ale tera to juz mi sie spac chce</p>
+            <p>tutaj sobie dodam takie ze mozna przeciagac obrazki z roznych miejsc ciekawych o, ale tera to juz mi sie
+                spac chce</p>
         </section>
 
         <section id="jakToDziala" class="section reveal">
@@ -41,37 +44,37 @@
             </ul>
         </section>
 
-        <section id="zaplanujPodrozSection" class="sectionMain reveal"> 
+        <section id="zaplanujPodrozSection" class="sectionMain reveal">
             <div class="surveyWrapper">
                 <h2>Ankieta Podróżnika</h2>
                 <form id="mainSurvey">
-                    
                     <div class="stepTitle">1. Wybierz kierunki</div>
                     <div class="carouselViewport" id="carouselViewport">
-                        <div class="carouselTrack">
-                            <label class="selectionCard">
-                                <input type="checkbox" name="destinations" value="Góry" hidden>
-                                <div class="cardContent">
-                                    <img src="images/insta3.jpg" alt="Góry">
+                        <div class="carouselTrack"> <label class="selectionCard">
+                                <input type="checkbox" name="destinations" value="Góry" class="visually-hidden">
+                                <div class="cardContent"> <img src="images/insta3.jpg" alt="Góry">
                                     <span>Góry</span>
                                 </div>
                             </label>
+
                             <label class="selectionCard">
-                                <input type="checkbox" name="destinations" value="Morze" hidden>
+                                <input type="checkbox" name="destinations" value="Morze" class="visually-hidden">
                                 <div class="cardContent">
                                     <img src="images/insta2.jpg" alt="Morze">
                                     <span>Morze</span>
                                 </div>
                             </label>
+
                             <label class="selectionCard">
-                                <input type="checkbox" name="destinations" value="Miasto" hidden>
+                                <input type="checkbox" name="destinations" value="Miasto" class="visually-hidden">
                                 <div class="cardContent">
                                     <img src="images/insta1.jpg" alt="Miasto">
                                     <span>City Break</span>
                                 </div>
                             </label>
+
                             <label class="selectionCard">
-                                <input type="checkbox" name="destinations" value="Egzotyka" hidden>
+                                <input type="checkbox" name="destinations" value="Egzotyka" class="visually-hidden">
                                 <div class="cardContent">
                                     <img src="img/egzotyka.jpg" alt="Egzotyka">
                                     <span>Egzotyka</span>
@@ -84,19 +87,21 @@
                     <div class="surveyDetails">
                         <div class="inputGroup fullWidth">
                             <label for="userEmail">Twój E-mail:</label>
-                            <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com" required>
+                            <input type="email" id="userEmail" name="userEmail" placeholder="przyklad@mail.com"
+                                required>
                         </div>
                         <div class="inputRow">
                             <div class="inputGroup">
                                 <label for="travelersCount">Osoby:</label>
-                                <input type="number" id="travelersCount" name="travelersCount" min="1" max="11" value="2" required>
+                                <input type="number" id="travelersCount" name="travelersCount" min="1" max="11"
+                                    value="2" required>
                             </div>
                             <div class="inputGroup">
                                 <label for="durationRange">Dni: <span id="durationValue">7</span></label>
                                 <input type="range" id="durationRange" name="durationRange" min="1" max="31" value="7">
                             </div>
                             <div class="inputGroup">
-                                <label for="budgetRange">Budżet:</label>
+                                <label for="budgetRange">Budżet na osobę:</label>
                                 <select id="budgetRange" name="budgetRange" required>
                                     <option value="" disabled selected>Wybierz</option>
                                     <option value="low">Do 1000 zł</option>
@@ -135,7 +140,7 @@
                     <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
                 <div class="mailOdnosnik">
-                    <a href="mailto:wakacjenawalizkach@gmail.com">wakacjenawalizkach@gmail.com</a>
+                    <a href="mailto:marzeniawalizkach@gmail.com">marzenianawalizkach@gmail.com</a>
                 </div>
             </div>
         </footer>
@@ -143,4 +148,5 @@
 
     <script src="functionality.js"></script>
 </body>
+
 </html>
