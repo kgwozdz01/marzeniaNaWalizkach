@@ -1,12 +1,21 @@
 /* Zmienne CSS (:root) - ułatwiają zarządzanie kolorami w całym projekcie z jednego miejsca */
 :root {
-  --primary: #2c3e50; /* Ciemny granatowy/szary - elegancja i powaga */
-  --accent: #e74c3c; /* Żywa czerwień - akcent, który ma przyciągać wzrok do ważnych rzeczy */
+  --primary: #a18b1e; /* Ciemny granatowy/szary - elegancja i powaga */
+  --accent: #ee8888; /* Żywa czerwień - akcent, który ma przyciągać wzrok do ważnych rzeczy */
   --white: #ffffff;
   --bg: #f8f9fa; /* Bardzo jasny szary - mniej męczy oczy niż czysta biel */
   /* 'cubic-bezier' sprawia, że animacja nie jest liniowa (nudna), ale ma dynamikę (startuje wolno, przyspiesza) */
   --transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/*.footer a {
+  color: rgb(238, 202, 100);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+} #f2bae1
+
+.footer a:hover {
+  color: #d1cc8d; /* Kolor akcentu przy najechaniu */
 
 /* Resetowanie domyślnych marginesów przeglądarki, aby strona wszędzie wyglądała tak samo */
 * {
@@ -19,6 +28,13 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+main {
+  background-image: url("images/navBarBack.jpg"); /* Ścieżka do pliku */
+  background-size: cover; /* Rozciąga obraz tak, by wypełnił całą sekcję */
+  background-position: center; /* Centruje zdjęcie */
+  background-attachment: fixed; /* Opcjonalnie: tło stoi w miejscu, gdy przewijasz stronę */
+  background-repeat: no-repeat; /* Zapobiega powielaniu się zdjęcia (kafelkowaniu) */
 }
 
 body {
@@ -53,11 +69,38 @@ body {
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Ustawia .footerLinks oraz .mailOdnosnik obok siebie */
+  justify-content: space-between; /* Rozsuwa je na lewo i prawo */
+  align-items: center; /* Centruje je w pionie */
   padding: 20px 5%;
   background: #2c3e50;
+  color: white;
+}
+
+.footerLinks {
+  display: flex; /* Ustawia Home, Insta, FB i Kontakt obok siebie */
+  align-items: center; /* Centruje elementy wewnątrz grupy w pionie */
+  gap: 33px; /* Robi równe odstępy między linkami i ikonami */
+}
+
+/* Styl dla wszystkich linków w stopce */
+.footer a {
+  color: rgb(238, 202, 100);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  color: #d1cc8d; /* Kolor akcentu przy najechaniu */
+}
+
+/* Stylizacja ikon, aby były małe i równe */
+.footerLinks img {
+  height: 28px; /* Ustalona wysokość ikon */
+  width: auto;
+  display: block; /* Usuwa dziwne odstępy pod obrazkiem */
+  background: transparent; /* Zapewnia brak tła (zgodnie z poprzednim pytaniem) */
 }
 
 /* Flexbox rozsuwa logo na lewo, a menu na prawo dzięki 'space-between' */
@@ -65,19 +108,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5%;
-  height: 70px;
+  padding: 10px 5%;
+  background: transparent;
 }
-.logo {
-  font-weight: 800;
-  letter-spacing: -1px;
+.logo img {
+  height: 50px; /* Ustaw konkretną wysokość dla Twojego logo */
+  width: 150px; /* Pozwól szerokości dopasować się proporcjonalnie */
+  display: block;
 }
 
 .linkiNawigacyjne {
   display: flex;
   list-style: none;
-  gap: 15px;
-  font-size: 0.9rem;
+  gap: 30px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  font-size: 1.1rem;
 }
 .linkiNawigacyjne a {
   text-decoration: none;
@@ -91,9 +137,11 @@ body {
 
 /* Specyficzny styl dla przycisku Zaplanuj w menu */
 #navZaplanuj {
+  display: inline-flex;
+  align-self: center;
   background: var(--accent);
-  padding: 5px 12px;
-  border-radius: 15px;
+  padding: 7px 9px;
+  border-radius: 40px;
 }
 #navZaplanuj a {
   color: white;
@@ -122,6 +170,14 @@ body {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+#homeSection {
+  background: var(--white);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 800px;
 }
 
 /* ANKIETA: Biały "pływający" kontener z delikatnym cieniem (box-shadow) */

@@ -10,38 +10,45 @@
 
 <body>
 
-    <div id="somethingElse" class="hidden">Witaj na samej górze! 🌴</div>
+    <!--<div id="somethingElse" class="hidden">Witaj na samej górze! </div> -->
 
     <header class="mainHeader">
-        <nav class="navbar">
-            <div class="logo">MARZENIA NA WALIZKACH KOLORY JAK NA LOGO</div>
+        <div class="navbar">
+            <div class="logo"><img src="images/logoTBD.jpg" alt="Logo"></div>
             <ul class="linkiNawigacyjne">
-                <li><a href="#home">Home</a></li>
+                <!---- <li><a href="#home">Home</a></li> --->
                 <li><a href="#jakToDziala">Jak to działa</a></li>
                 <li><a href="#oMnie">O mnie</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
-                <li id="navZaplanuj"><a href="#zaplanujPodrozSection">Zaplanuj</a></li>
             </ul>
-        </nav>
+            <div id="navZaplanuj">
+                <a href="#zaplanujPodrozSection">Zaplanuj</a>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section id="home" class="section reveal">
-            <h1>Zaplanuj wymarzone wakacje</h1>
-            <p>Twój inteligentny planer podróży dostępny w jednym miejscu.</p>
-            <a href="#zaplanujPodrozSection" class="btnPrimary">Zacznij tutaj</a>
-            <p>tutaj sobie dodam takie ze mozna przeciagac obrazki z roznych miejsc ciekawych o, ale tera to juz mi sie
-                spac chce</p>
+        <section id="start" class="sectionMain reveal">
+            <div id="home" class="surveyWrapper">
+                <h1>Zaplanuj wymarzone wakacje</h1>
+                <p>Twój inteligentny planer podróży dostępny w jednym miejscu.</p>
+                <a href="#zaplanujPodrozSection" class="btnPrimary">Zacznij tutaj</a>
+                <p>tutaj sobie dodam takie ze mozna przeciagac obrazki z roznych miejsc ciekawych o, ale tera to juz mi
+                    sie
+                    spac chce</p>
+            </div>
         </section>
 
-        <section id="jakToDziala" class="section reveal">
-            <h2>Jak to działa</h2>
-            <p>Trzy proste kroki do Twojej idealnej podróży.</p>
-            <ul>
-                <li>Wybierz kierunki</li>
-                <li>Zaplac</li>
-                <li>Spierdalaj</li>
-            </ul>
+        <section id="jakToDziala" class="sectionMain reveal">
+            <div class="surveyWrapper">
+                <h2>Jak to działa</h2>
+                <p>Trzy proste kroki do Twojej idealnej podróży.</p>
+                <ul>
+                    <li>Wybierz kierunki</li>
+                    <li>Zaplac</li>
+                    <li>Spierdalaj</li>
+                </ul>
+            </div>
         </section>
 
         <section id="zaplanujPodrozSection" class="sectionMain reveal">
@@ -116,32 +123,43 @@
             </div>
         </section>
 
-        <section id="oMnie" class="sectionReviews reveal">
-            <h2>O mnie</h2>
-            <h3>siemanko</h3>
-            <p>Jestem pasjonatką podróży i odkrywania nowych miejsc. Chce na was zarobic aby sama se jezdzic elo</p>
-            <div class="instaGrid">
-                <div class="instaItem"><img src="images/insta1.jpg" alt="1"></div>
-                <div class="instaItem"><img src="images/insta2.jpg" alt="2"></div>
-                <div class="instaItem"><img src="images/insta3.jpg" alt="3"></div>
+        <section id="oMnie" class="sectionMain reveal">
+            <div class="surveyWrapper">
+                <h2>O mnie</h2>
+                <h3>siemanko</h3>
+                <p>Jestem pasjonatką podróży i odkrywania nowych miejsc. Chce na was zarobic aby sama se jezdzic elo</p>
+                <div class="instaGrid">
+                    <div class="instaItem"><img src="images/insta1.jpg" alt="1"></div>
+                    <div class="instaItem"><img src="images/insta2.jpg" alt="2"></div>
+                    <div class="instaItem"><img src="images/insta3.jpg" alt="3"></div>
+                </div>
             </div>
         </section>
 
-        <section id="kontakt" class="section reveal">
-            <h2>Kontakt</h2>
-            <p>cos sie tu napisze, nie wiem co. Dzien dobry!</p>
+        <section id="kontakt" class="sectionMain reveal">
+            <div class="surveyWrapper">
+                <h2>Kontakt</h2>
+                <p>cos sie tu napisze, nie wiem co. Dzien dobry!</p>
+            </div>
         </section>
 
         <footer class="footer">
-            <div class="footerContainer">
-                <ul class="footerLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#oMnie">Instagram</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-                <div class="mailOdnosnik">
-                    <a href="mailto:marzeniawalizkach@gmail.com">marzenianawalizkach@gmail.com</a>
-                </div>
+            <div class="footerLinks">
+                <a id="homeLink" href="#home">Home</a>
+
+                <a id="instagram" href="https://www.instagram.com/marzenia_na_walizkach/" target="_blank"
+                    rel="noopener">
+                    <img src="images/instaLogo.png" alt="Instagram">
+                </a>
+
+                <a id="facebook" href="https://www.facebook.com/profile.php?id=61574814033288" target="_blank"
+                    rel="noopener">
+                    <img src="images/fbLogo.jpg" alt="Facebook">
+                </a>
+            </div>
+
+            <div class="mailOdnosnik">
+                <a href="mailto:marzeniawalizkach@gmail.com">🌴marzenianawalizkach@gmail.com🌴</a>
             </div>
         </footer>
     </main>
